@@ -1,0 +1,33 @@
+﻿@model TaskTracker.Models.CheckList
+
+<p>
+    <h3>Чек лист</h3>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Текст задания
+        </th>
+        <th>
+            Дата выполнения
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var task in Model.Tasks)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>task.TaskText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => task.TillDate)
+        </td>
+        <td>
+            @Ajax.ActionLink("Delete from check list", "DeleteFromCheckList", new { id = task.Id }, new AjaxOptions { UpdateTargetId = "checkList" })
+        </td>
+    </tr>
+}
+
+
+</table>
